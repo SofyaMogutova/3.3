@@ -48,7 +48,7 @@ let facultetInput = document.querySelector('#XMLfacultet');
 let courceInput = document.querySelector('#XMLcource');
 let groupSelect = document.querySelector('#XMLgroup');
 let nameSelect = document.querySelector('#XMLname');
-let xml = getXMLDocument("source/students.xml");
+let xml = getXMLDocument("students.xml");
 let groups = xml.getElementsByTagName('group');
 let table = document.querySelector('.exercise10 .task1 .table');
 
@@ -148,7 +148,6 @@ function fillMarks(group, name){
                     let cells = table.querySelectorAll('.row:not(.header)');
                     for(let z = 0; z < marks.length; z++){
                         cells[z].querySelectorAll('input')[Number(marks[z].innerHTML)].checked = true;
-                        calculateAverage();
                     }
 
                     break;
@@ -171,3 +170,4 @@ nameSelect.addEventListener('change', (event) => {
     fillMarks(groupSelect.value, nameSelect.value);
 })
 
+document.querySelector('#buttonBall').addEventListener('click',calculateAverage);
