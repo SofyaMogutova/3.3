@@ -48,7 +48,7 @@ let facultetInput = document.querySelector('#XMLfacultet');
 let courceInput = document.querySelector('#XMLcource');
 let groupSelect = document.querySelector('#XMLgroup');
 let nameSelect = document.querySelector('#XMLname');
-let xml = getXMLDocument("source/students.xml");
+let xml = getXMLDocument("students.xml");
 let groups = xml.getElementsByTagName('group');
 let table = document.querySelector('.exercise10 .task1 .table');
 
@@ -171,3 +171,7 @@ nameSelect.addEventListener('change', (event) => {
 })
 
 document.querySelector('#buttonBall').addEventListener('click',calculateAverage);
+
+document.querySelector('#clear').addEventListener('click',()=>{
+    document.querySelector("#resSpan").innerHTML = "" ;
+});
