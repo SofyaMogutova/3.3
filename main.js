@@ -11,6 +11,9 @@ function calculateAverage(){
         }
     })
     document.querySelector("#resSpan").innerHTML = "Cредний балл: " + res / (count  / 3);
+    if ((res / (count  / 3))<1){
+        document.querySelector("#resSpan").innerHTML = "Cредний балл: " + res / (count  / 3) + "Ты отчислен урод!!!";
+    }
 }
 
 function updateListeners(){
