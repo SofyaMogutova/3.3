@@ -12,8 +12,9 @@ function calculateAverage(){
     })
     document.querySelector("#resSpan").innerHTML = "Cредний балл: " + res / (count  / 3);
     if ((res / (count  / 3))<1){
-        document.querySelector("#resSpan").innerHTML = "Cредний балл: " + res / (count  / 3) + " Ты отчислен урод!!!";
+        document.querySelector("#resSpan").innerHTML = "Cредний балл: " + res / (count  / 3) + "Ты отчислен урод!!!";
     }
+    calculateNumbers();
 }
 
 function updateListeners(){
@@ -124,6 +125,7 @@ function fillSubjects(group){
 
                     let input = document.createElement('input');
                     input.setAttribute('type', 'radio');
+                    input.classList.add('mark');
                     input.value = j;
                     input.setAttribute('name', cell.innerHTML);
                     radio.append(input);
@@ -167,10 +169,12 @@ groupSelect.addEventListener('change', (event) => {
     setCource(groupSelect.value);
     fillSubjects(groupSelect.value);
     fillMarks(groupSelect.value, nameSelect.value);
+    calculateNumbers();
 })
 
 nameSelect.addEventListener('change', (event) => {
     fillMarks(groupSelect.value, nameSelect.value);
+    calculateNumbers();
 })
 
 document.querySelector('#buttonBall').addEventListener('click',calculateAverage);
@@ -178,3 +182,28 @@ document.querySelector('#buttonBall').addEventListener('click',calculateAverage)
 document.querySelector('#clear').addEventListener('click',()=>{
     document.querySelector("#resSpan").innerHTML = "" ;
 });
+
+
+function calculateNumbers(){
+    let zero = 0;
+    let one = 0;
+    let two = 0;
+    document.querySelectorAll('.mark').forEach(function(mark){
+        if(mark.value == 0 && mark.checked){
+            zero++;
+        }
+        if(mark.value == 1 && mark.checked){
+            one++;
+        }
+        if(mark.value == 2 && mark.checked){
+            two++;
+        }
+    })
+    document.querySelector('#markZero').innerHTML = "Нулей: " + zero;
+    document.querySelector('#markOne').innerHTML = "Единиц: " + one;
+    document.querySelector('#markTwo').innerHTML = "Двоек: " + two;
+}
+calculateNumbers();
+document.querySelectorAll('.mark').addEventListener('change',function(){
+    calculateNumbers();
+})
